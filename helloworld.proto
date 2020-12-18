@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package helloworld;
+
+service Crud {
+  rpc CreateB (CreateBRequest) returns (CreateBReply) {}
+}
+
+//-------------------------------
+message CreateBRequest {
+  string comandob = 1;
+}
+
+message CreateBReply {
+  string ipb = 1;
+}
+//------------------------------

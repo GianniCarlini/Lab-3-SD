@@ -30,29 +30,29 @@ import (
 )
 
 const (
-	address     = "localhost:50051"
-	defaultName = "world"
+	address = "localhost:50050" //Broker
+	dns1 = "localhost:50051"
+	dns2 = "localhost:50052"
+	dns3 = "localhost:50053"
 )
 
 func main() {
-	// Set up a connection to the server.
+
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
-
-	// Contact the server and print out its response.
-	name := defaultName
-	if len(os.Args) > 1 {
-		name = os.Args[1]
-	}
+	c := pb.NewCrudClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	//-----ingreso del comando-------------------
+	var comando string
+	fmt.Println("Ingrese el comando")
+	fmt.Scanln(&comando)
+	r, err := c.CreateB(ctx, &pb.CreateBRequest{Comandob: comando})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
-	log.Printf("Greeting: %s", r.GetMessage())
+	log.Printf("Greeting: %s", r.GetIpb())
 }
