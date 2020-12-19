@@ -1,0 +1,2 @@
+lol.com IN A localhost:50051
+xd.com IN A localhost:50051

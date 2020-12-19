@@ -4,10 +4,12 @@ import (
 	"context"
 	"log"
 	"net"
+	"fmt"
 	"math/rand"
+	"time"
 
 	"google.golang.org/grpc"
-	pb "https://github.com/GianniCarlini/Lab-3-SD/proto"
+	pb "github.com/GianniCarlini/Lab-3-SD/proto"
 )
 
 const (
@@ -22,14 +24,19 @@ type server struct {
 
 
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {
+	fmt.Println("Broker iniciado")
 	log.Printf("Recibido: %v", in.GetComandob())
 	//------ip aleatoria asignada---------
-	in := []string{dns1, dns2, dns3}
-    randomIndex := rand.Intn(len(in))
-    pick := in[randomIndex]
+	rand.Seed(time.Now().Unix())
+	ips := []string{dns1, dns2, dns3}
+	n := rand.Int() % len(ips)
+	pick := ips[n]
 	return &pb.CreateBReply{Ipb: pick}, nil
 }
-
+//-------------no implementados----------------
+func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
+	return &pb.CreateDReply{Reloj: "null"}, nil
+}
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
