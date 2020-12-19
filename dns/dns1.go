@@ -47,6 +47,26 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 		if err != nil {
 			log.Fatal(err)
 		}
+	}else if strings.ToLower(option) == "update"{
+		cambio := strings.Split(comando," ")[2]
+		cambio = strings.TrimSuffix(cambio, "\n")
+		input, err := ioutil.ReadFile(domain+".txt")
+        if err != nil {
+                log.Fatalln(err)
+        }
+
+        lines := strings.Split(string(input), "\n")
+
+        for i, line := range lines {
+                if strings.Contains(line, nd) {
+                        lines[i] = cambio+" IN A "+dns1
+                }
+        }
+        output := strings.Join(lines, "\n")
+        err = ioutil.WriteFile(domain+".txt", []byte(output), 0644)
+        if err != nil {
+                log.Fatalln(err)
+        }
 	}
 	return &pb.CreateDReply{Reloj: "aca te envio el relojito cuando este implementado uwu"}, nil
 }
