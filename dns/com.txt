@@ -1,4 +1,9 @@
-cooomo.com IN A localhost:50051
-cooomo.com IN A localhost:50051
- 
- 
+lol.com IN A localhost:50051
+xd.com IN A localhost:50051
+lol.com IN A localhost:50051
+xd.com IN A localhost:50051
+tumom.com IN A localhost:50051
+LOL.COM IN A localhost:50051
+sada.com IN A localhost:50051
+sadas.com IN A localhost:50051
+lol.com IN A localhost:50051

@@ -1,1 +1,2 @@
-xd.cl IN A localhost:50051
+no.cl IN A localhost:50051
+lol.cl IN A localhost:50051

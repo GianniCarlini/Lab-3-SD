@@ -22,6 +22,6 @@ message CreateDRequest {
 }
 
 message CreateDReply {
-  string reloj = 1;
+  repeated int64 reloj = 1;
 }
 //------------------------------

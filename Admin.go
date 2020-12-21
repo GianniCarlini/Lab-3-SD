@@ -58,7 +58,7 @@ func main() {
 			if err3 != nil {
 				log.Fatalf("could not greet: %v", err3)
 			}
-			log.Printf("%s", r2.GetReloj())
+			fmt.Println("Reloj:",r2.GetReloj())
 		}else{
 			fmt.Println("Comando ingresado no valido")
 		}

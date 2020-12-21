@@ -24,6 +24,17 @@ const (
 type server struct {
 }
 
+var dom [] string
+var watch [][] int64
+
+func existeEnArreglo(arreglo []string, busqueda string) (bool,int) { //https://parzibyte.me/blog/2019/08/07/go-elemento-existe-en-arreglo/
+	for i, numero := range arreglo {
+		if numero == busqueda {
+			return true,i
+		}
+	}
+	return false,0
+}
 
 func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
 	fmt.Println("DNS 1 iniciado")
@@ -34,6 +45,7 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	nd := strings.Split(comando," ")[1]
 	nd = strings.TrimSuffix(nd, "\n")
 	domain := strings.Split(nd,".")[1]
+
 	//--------------------------------------------
 	line := comando
 	content, err := ioutil.ReadFile("log.txt") // just pass the file name
@@ -47,6 +59,18 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	if err != nil {
 		log.Fatal(err)
 	}
+	//----------------------------------------------------------
+	existe,indice := existeEnArreglo(dom,domain)
+	if existe {
+		watch[indice][0] += 1 //por dominio
+	}else{
+		watch = append(watch,[]int64{1,0,0})
+		dom = append(dom,domain)
+	}
+	fmt.Println(watch)
+	fmt.Println(dom)
+	//----------------------------------------------------------------------
+
 	if strings.ToLower(option) == "create"{
 		linea := nd+" IN A "+dns1+"\n"
 		content, err := ioutil.ReadFile(domain+".txt") // just pass the file name
@@ -99,7 +123,9 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
                 log.Fatalln(err)
 		}
 	}
-	return &pb.CreateDReply{Reloj: "aca te envio el relojito cuando este implementado uwu"}, nil
+	fmt.Println("ANTES DE LA TRAGEDIA")
+	fmt.Println(watch[indice])
+	return &pb.CreateDReply{Reloj: watch[indice]}, nil
 }
 //-------------no implementados----------------
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {
