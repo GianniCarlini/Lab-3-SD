@@ -1,2 +1,4 @@
-
-xd.lol IN A localhost:50051
+cooomo.com IN A localhost:50051
+cooomo.com IN A localhost:50051
+ 
+ 

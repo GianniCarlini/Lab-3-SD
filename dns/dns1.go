@@ -34,6 +34,19 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	nd := strings.Split(comando," ")[1]
 	nd = strings.TrimSuffix(nd, "\n")
 	domain := strings.Split(nd,".")[1]
+	//--------------------------------------------
+	line := comando
+	content, err := ioutil.ReadFile("log.txt") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+	
+	content = append(content, []byte(line)...)
+
+	err = ioutil.WriteFile(("log.txt"), content, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 	if strings.ToLower(option) == "create"{
 		linea := nd+" IN A "+dns1+"\n"
 		content, err := ioutil.ReadFile(domain+".txt") // just pass the file name
@@ -67,6 +80,24 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
         if err != nil {
                 log.Fatalln(err)
         }
+	}else if strings.ToLower(option) == "delete"{
+		input, err := ioutil.ReadFile(domain+".txt")
+        if err != nil {
+                log.Fatalln(err)
+        }
+
+        lines := strings.Split(string(input), "\n")
+
+        for i, line := range lines {
+                if strings.Contains(line, nd) {
+                        lines[i] = " "
+                }
+        }
+        output := strings.Join(lines, "\n")
+        err = ioutil.WriteFile(domain+".txt", []byte(output), 0644)
+        if err != nil {
+                log.Fatalln(err)
+		}
 	}
 	return &pb.CreateDReply{Reloj: "aca te envio el relojito cuando este implementado uwu"}, nil
 }
