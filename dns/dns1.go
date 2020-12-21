@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"strings"
 	"io/ioutil"
-
+	"os"
+	"bufio"
 
 	"google.golang.org/grpc"
 	pb "github.com/GianniCarlini/Lab-3-SD/proto"
@@ -28,12 +29,15 @@ var dom [] string
 var watch [][] int64
 
 func existeEnArreglo(arreglo []string, busqueda string) (bool,int) { //https://parzibyte.me/blog/2019/08/07/go-elemento-existe-en-arreglo/
-	for i, numero := range arreglo {
+	var ind int
+	for i,numero := range arreglo {
 		if numero == busqueda {
 			return true,i
+		}else{
+			ind = i+1
 		}
 	}
-	return false,0
+	return false,ind
 }
 
 func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
@@ -127,9 +131,45 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	fmt.Println(watch[indice])
 	return &pb.CreateDReply{Reloj: watch[indice]}, nil
 }
+func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, error) {
+	comando := in.GetComandoget()
+	nd := strings.Split(comando," ")[1]
+	nd = strings.TrimSuffix(nd, "\n")
+	dominio := strings.Split(nd,".")[1]
+	fmt.Println(dominio)
+	//-----abro--------------
+	file, err := os.Open(dominio+".txt")
+       if err != nil {
+           log.Fatal(err)
+       }
+       defer file.Close()
+
+       scanner := bufio.NewScanner(file)
+
+	   var ip string
+	   for scanner.Scan() {            // internally, it advances token based on sperator
+			linea := scanner.Text()
+			res := strings.Split(linea, " ") 
+			if nd == res[0]{
+				fmt.Println("encontre la linea")
+				ip = res[3]
+			}
+           fmt.Println(scanner.Text())  // token in unicode-char
+	   }
+	   existe,indice := existeEnArreglo(dom,dominio)
+	   if existe{
+		   fmt.Println("nombre.dominio encontrado")
+	   }
+	   reloj := watch[indice]
+	return &pb.GetReply{Ipget: ip, Relojget: reloj}, nil
+}
 //-------------no implementados----------------
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {
 	return &pb.CreateBReply{Ipb: "null"}, nil
+}
+func (s *server) ConnectC(ctx context.Context, in *pb.ConnectCRequest) (*pb.ConnectCReply, error) {
+	reloj := []int64{1,0,0}
+	return &pb.ConnectCReply{Ipc: "ip", Relojc: reloj}, nil
 }
 func main() {
 	lis, err := net.Listen("tcp", port)

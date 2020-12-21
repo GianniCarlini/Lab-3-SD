@@ -20,6 +20,8 @@ const (
 	dns3 = "localhost:50053"
 )
 
+type server struct {
+}
 
 func main() {
 	fmt.Println("Bienvenido Administrador")

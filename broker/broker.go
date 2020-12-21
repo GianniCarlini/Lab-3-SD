@@ -33,9 +33,32 @@ func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.Create
 	pick := ips[n]
 	return &pb.CreateBReply{Ipb: pick}, nil
 }
+func (s *server) ConnectC(ctx context.Context, in *pb.ConnectCRequest) (*pb.ConnectCReply, error) {
+	fmt.Println("Conectando con el broker metodo get")
+	conn, err := grpc.Dial(dns1, grpc.WithInsecure(), grpc.WithBlock())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	c := pb.NewCrudClient(conn)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	r, err := c.Get(ctx, &pb.GetRequest{Comandoget: in.GetComandoc()})
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	return &pb.ConnectCReply{Ipc: r.GetIpget(), Relojc: r.GetRelojget()}, nil
+}
+
 //-------------no implementados----------------
 func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
-	return &pb.CreateDReply{Reloj: "null"}, nil
+	reloj := []int64{1,0,0}
+	return &pb.CreateDReply{Reloj: reloj}, nil
+}
+//-------------no implementados----------------
+func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, error) {
+	reloj := []int64{1,0,0}
+	return &pb.GetReply{Ipget: "ip", Relojget: reloj}, nil
 }
 func main() {
 	lis, err := net.Listen("tcp", port)

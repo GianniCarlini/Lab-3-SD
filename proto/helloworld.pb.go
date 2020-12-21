@@ -218,6 +218,212 @@ func (x *CreateDReply) GetReloj() []int64 {
 	return nil
 }
 
+//------------------------------
+type ConnectCRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Comandoc string `protobuf:"bytes,1,opt,name=comandoc,proto3" json:"comandoc,omitempty"`
+}
+
+func (x *ConnectCRequest) Reset() {
+	*x = ConnectCRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConnectCRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectCRequest) ProtoMessage() {}
+
+func (x *ConnectCRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectCRequest.ProtoReflect.Descriptor instead.
+func (*ConnectCRequest) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ConnectCRequest) GetComandoc() string {
+	if x != nil {
+		return x.Comandoc
+	}
+	return ""
+}
+
+type ConnectCReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ipc    string  `protobuf:"bytes,1,opt,name=ipc,proto3" json:"ipc,omitempty"`
+	Relojc []int64 `protobuf:"varint,2,rep,packed,name=relojc,proto3" json:"relojc,omitempty"`
+}
+
+func (x *ConnectCReply) Reset() {
+	*x = ConnectCReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConnectCReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectCReply) ProtoMessage() {}
+
+func (x *ConnectCReply) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectCReply.ProtoReflect.Descriptor instead.
+func (*ConnectCReply) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ConnectCReply) GetIpc() string {
+	if x != nil {
+		return x.Ipc
+	}
+	return ""
+}
+
+func (x *ConnectCReply) GetRelojc() []int64 {
+	if x != nil {
+		return x.Relojc
+	}
+	return nil
+}
+
+//------------------------------
+type GetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Comandoget string `protobuf:"bytes,1,opt,name=comandoget,proto3" json:"comandoget,omitempty"`
+}
+
+func (x *GetRequest) Reset() {
+	*x = GetRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRequest) ProtoMessage() {}
+
+func (x *GetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
+func (*GetRequest) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetRequest) GetComandoget() string {
+	if x != nil {
+		return x.Comandoget
+	}
+	return ""
+}
+
+type GetReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ipget    string  `protobuf:"bytes,1,opt,name=ipget,proto3" json:"ipget,omitempty"`
+	Relojget []int64 `protobuf:"varint,2,rep,packed,name=relojget,proto3" json:"relojget,omitempty"`
+}
+
+func (x *GetReply) Reset() {
+	*x = GetReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReply) ProtoMessage() {}
+
+func (x *GetReply) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReply.ProtoReflect.Descriptor instead.
+func (*GetReply) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetReply) GetIpget() string {
+	if x != nil {
+		return x.Ipget
+	}
+	return ""
+}
+
+func (x *GetReply) GetRelojget() []int64 {
+	if x != nil {
+		return x.Relojget
+	}
+	return nil
+}
+
 var File_helloworld_proto protoreflect.FileDescriptor
 
 var file_helloworld_proto_rawDesc = []byte{
@@ -233,16 +439,37 @@ var file_helloworld_proto_rawDesc = []byte{
 	0x28, 0x09, 0x52, 0x08, 0x63, 0x6f, 0x6d, 0x61, 0x6e, 0x64, 0x6f, 0x64, 0x22, 0x24, 0x0a, 0x0c,
 	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x14, 0x0a, 0x05,
 	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x05, 0x72, 0x65, 0x6c,
-	0x6f, 0x6a, 0x32, 0x8c, 0x01, 0x0a, 0x04, 0x43, 0x72, 0x75, 0x64, 0x12, 0x41, 0x0a, 0x07, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x12, 0x1a, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f,
-	0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x41,
-	0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x12, 0x1a, 0x2e, 0x68, 0x65, 0x6c, 0x6c,
-	0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72,
-	0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22,
-	0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x6a, 0x22, 0x2d, 0x0a, 0x0f, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x6f, 0x6d, 0x61, 0x6e, 0x64, 0x6f,
+	0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x6f, 0x6d, 0x61, 0x6e, 0x64, 0x6f,
+	0x63, 0x22, 0x39, 0x0a, 0x0d, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x69, 0x70, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x69, 0x70, 0x63, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x63, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x03, 0x52, 0x06, 0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x63, 0x22, 0x2c, 0x0a, 0x0a,
+	0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x6f,
+	0x6d, 0x61, 0x6e, 0x64, 0x6f, 0x67, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x63, 0x6f, 0x6d, 0x61, 0x6e, 0x64, 0x6f, 0x67, 0x65, 0x74, 0x22, 0x3c, 0x0a, 0x08, 0x47, 0x65,
+	0x74, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x70, 0x67, 0x65, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x70, 0x67, 0x65, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x67, 0x65, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x03, 0x52, 0x08,
+	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x67, 0x65, 0x74, 0x32, 0x89, 0x02, 0x0a, 0x04, 0x43, 0x72, 0x75,
+	0x64, 0x12, 0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x12, 0x1a, 0x2e, 0x68,
+	0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x42, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f,
+	0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x12,
+	0x1a, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65,
+	0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44,
+	0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x44, 0x0a, 0x08, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
+	0x63, 0x74, 0x43, 0x12, 0x1b, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64,
+	0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x19, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x35, 0x0a,
+	0x03, 0x47, 0x65, 0x74, 0x12, 0x16, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c,
+	0x64, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x68,
+	0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x70,
+	0x6c, 0x79, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -257,20 +484,28 @@ func file_helloworld_proto_rawDescGZIP() []byte {
 	return file_helloworld_proto_rawDescData
 }
 
-var file_helloworld_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_helloworld_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_helloworld_proto_goTypes = []interface{}{
-	(*CreateBRequest)(nil), // 0: helloworld.CreateBRequest
-	(*CreateBReply)(nil),   // 1: helloworld.CreateBReply
-	(*CreateDRequest)(nil), // 2: helloworld.CreateDRequest
-	(*CreateDReply)(nil),   // 3: helloworld.CreateDReply
+	(*CreateBRequest)(nil),  // 0: helloworld.CreateBRequest
+	(*CreateBReply)(nil),    // 1: helloworld.CreateBReply
+	(*CreateDRequest)(nil),  // 2: helloworld.CreateDRequest
+	(*CreateDReply)(nil),    // 3: helloworld.CreateDReply
+	(*ConnectCRequest)(nil), // 4: helloworld.ConnectCRequest
+	(*ConnectCReply)(nil),   // 5: helloworld.ConnectCReply
+	(*GetRequest)(nil),      // 6: helloworld.GetRequest
+	(*GetReply)(nil),        // 7: helloworld.GetReply
 }
 var file_helloworld_proto_depIdxs = []int32{
 	0, // 0: helloworld.Crud.CreateB:input_type -> helloworld.CreateBRequest
 	2, // 1: helloworld.Crud.CreateD:input_type -> helloworld.CreateDRequest
-	1, // 2: helloworld.Crud.CreateB:output_type -> helloworld.CreateBReply
-	3, // 3: helloworld.Crud.CreateD:output_type -> helloworld.CreateDReply
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: helloworld.Crud.ConnectC:input_type -> helloworld.ConnectCRequest
+	6, // 3: helloworld.Crud.Get:input_type -> helloworld.GetRequest
+	1, // 4: helloworld.Crud.CreateB:output_type -> helloworld.CreateBReply
+	3, // 5: helloworld.Crud.CreateD:output_type -> helloworld.CreateDReply
+	5, // 6: helloworld.Crud.ConnectC:output_type -> helloworld.ConnectCReply
+	7, // 7: helloworld.Crud.Get:output_type -> helloworld.GetReply
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -330,6 +565,54 @@ func file_helloworld_proto_init() {
 				return nil
 			}
 		}
+		file_helloworld_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConnectCRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConnectCReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -337,7 +620,7 @@ func file_helloworld_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_helloworld_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -365,6 +648,8 @@ const _ = grpc.SupportPackageIsVersion6
 type CrudClient interface {
 	CreateB(ctx context.Context, in *CreateBRequest, opts ...grpc.CallOption) (*CreateBReply, error)
 	CreateD(ctx context.Context, in *CreateDRequest, opts ...grpc.CallOption) (*CreateDReply, error)
+	ConnectC(ctx context.Context, in *ConnectCRequest, opts ...grpc.CallOption) (*ConnectCReply, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetReply, error)
 }
 
 type crudClient struct {
@@ -393,10 +678,30 @@ func (c *crudClient) CreateD(ctx context.Context, in *CreateDRequest, opts ...gr
 	return out, nil
 }
 
+func (c *crudClient) ConnectC(ctx context.Context, in *ConnectCRequest, opts ...grpc.CallOption) (*ConnectCReply, error) {
+	out := new(ConnectCReply)
+	err := c.cc.Invoke(ctx, "/helloworld.Crud/ConnectC", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crudClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetReply, error) {
+	out := new(GetReply)
+	err := c.cc.Invoke(ctx, "/helloworld.Crud/Get", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CrudServer is the server API for Crud service.
 type CrudServer interface {
 	CreateB(context.Context, *CreateBRequest) (*CreateBReply, error)
 	CreateD(context.Context, *CreateDRequest) (*CreateDReply, error)
+	ConnectC(context.Context, *ConnectCRequest) (*ConnectCReply, error)
+	Get(context.Context, *GetRequest) (*GetReply, error)
 }
 
 // UnimplementedCrudServer can be embedded to have forward compatible implementations.
@@ -408,6 +713,12 @@ func (*UnimplementedCrudServer) CreateB(context.Context, *CreateBRequest) (*Crea
 }
 func (*UnimplementedCrudServer) CreateD(context.Context, *CreateDRequest) (*CreateDReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateD not implemented")
+}
+func (*UnimplementedCrudServer) ConnectC(context.Context, *ConnectCRequest) (*ConnectCReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectC not implemented")
+}
+func (*UnimplementedCrudServer) Get(context.Context, *GetRequest) (*GetReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 
 func RegisterCrudServer(s *grpc.Server, srv CrudServer) {
@@ -450,6 +761,42 @@ func _Crud_CreateD_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Crud_ConnectC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConnectCRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrudServer).ConnectC(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Crud/ConnectC",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrudServer).ConnectC(ctx, req.(*ConnectCRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crud_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrudServer).Get(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Crud/Get",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrudServer).Get(ctx, req.(*GetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Crud_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "helloworld.Crud",
 	HandlerType: (*CrudServer)(nil),
@@ -461,6 +808,14 @@ var _Crud_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateD",
 			Handler:    _Crud_CreateD_Handler,
+		},
+		{
+			MethodName: "ConnectC",
+			Handler:    _Crud_ConnectC_Handler,
+		},
+		{
+			MethodName: "Get",
+			Handler:    _Crud_Get_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

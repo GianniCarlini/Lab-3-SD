@@ -5,6 +5,9 @@ package helloworld;
 service Crud {
   rpc CreateB (CreateBRequest) returns (CreateBReply) {} //comandos para broker
   rpc CreateD (CreateDRequest) returns (CreateDReply) {} //comandos para dns
+  rpc ConnectC (ConnectCRequest) returns (ConnectCReply) {} //comandos para cliente
+  rpc Get (GetRequest) returns (GetReply) {} //comandos para dns/cliente/broker
+
 }
 
 //------------------------------
@@ -23,5 +26,23 @@ message CreateDRequest {
 
 message CreateDReply {
   repeated int64 reloj = 1;
+}
+//------------------------------
+message ConnectCRequest {
+  string comandoc = 1;
+}
+
+message ConnectCReply {
+  string ipc = 1;
+  repeated int64 relojc = 2;
+}
+//------------------------------
+message GetRequest {
+  string comandoget = 1;
+}
+
+message GetReply {
+  string ipget = 1;
+  repeated int64 relojget = 2;
 }
 //------------------------------
