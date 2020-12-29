@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	port = ":50051"
+	port = ":50053"
 	broker = "localhost:50050"
 	dns1 = "localhost:50051"
 	dns2 = "localhost:50052"
@@ -39,9 +39,16 @@ func existeEnArreglo(arreglo []string, busqueda string) (bool,int) { //https://p
 	}
 	return false,ind
 }
-
+func existeEnArreglo2(arreglo []string, busqueda string) bool{ //https://parzibyte.me/blog/2019/08/07/go-elemento-existe-en-arreglo/
+	for _,numero := range arreglo {
+		if numero == busqueda {
+			return true
+		}
+	}
+	return false
+}
 func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
-	fmt.Println("DNS 1 iniciado")
+	fmt.Println("DNS 3 iniciado")
 	log.Printf("Recibido: %v", in.GetComandod())
 	//------archivo---------
 	comando := in.GetComandod()
@@ -76,7 +83,7 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	//----------------------------------------------------------------------
 
 	if strings.ToLower(option) == "create"{
-		linea := nd+" IN A "+dns1+"\n"
+		linea := nd+" IN A "+dns3+"\n"
 		content, err := ioutil.ReadFile(domain+".txt") // just pass the file name
 		if err != nil {
 			fmt.Print(err)
@@ -100,7 +107,7 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 
         for i, line := range lines {
                 if strings.Contains(line, nd) {
-                        lines[i] = cambio+" IN A "+dns1
+                        lines[i] = cambio+" IN A "+dns3
                 }
         }
         output := strings.Join(lines, "\n")
@@ -162,6 +169,108 @@ func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, erro
 	   }
 	   reloj := watch[indice]
 	return &pb.GetReply{Ipget: ip, Relojget: reloj}, nil
+}
+func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply, error) {
+	b, err := ioutil.ReadFile("log.txt") // just pass the file name
+	if err != nil {
+		fmt.Print(err)
+	}
+	return &pb.MergeReply{Logresp: b}, nil
+}
+func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
+	var create1 []string
+	var update1 []string
+	var delete1 []string
+	mergecito := in.GetMergecito()
+
+	file, err0 := os.Open("log.txt")
+	if err0 != nil {
+		log.Fatal(err0)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {             // internally, it advances token based on sperator
+		fmt.Println(scanner.Text()) 
+		option := strings.Split(scanner.Text()," ")[0]
+		if strings.ToLower(option) == "create"{
+			create1 = append(create1, scanner.Text())
+		}else if strings.ToLower(option) == "update"{
+			update1 = append(update1, scanner.Text())
+		}else if strings.ToLower(option) == "delete"{
+			delete1 = append(delete1, scanner.Text())
+		}
+	}
+
+	for _,c := range mergecito{
+		if (existeEnArreglo2(create1, c) == true) || (existeEnArreglo2(update1, c)== true) || (existeEnArreglo2(delete1, c)== true){
+			fmt.Println("ya me ejecutaron")
+		}else{
+			option := strings.Split(c," ")[0]
+			nd := strings.Split(c," ")[1]
+			nd = strings.TrimSuffix(nd, "\n")
+			domain := strings.Split(nd,".")[1]
+			if strings.ToLower(option) == "create"{
+				linea := nd+" IN A "+dns1+"\n"
+				content, err := ioutil.ReadFile(domain+".txt") // just pass the file name
+				if err != nil {
+					fmt.Print(err)
+				}
+				
+				content = append(content, []byte(linea)...)
+		
+				err = ioutil.WriteFile((domain+".txt"), content, 0644)
+				if err != nil {
+					log.Fatal(err)
+				}
+			}else if strings.ToLower(option) == "update"{
+				cambio := strings.Split(c," ")[2]
+				cambio = strings.TrimSuffix(cambio, "\n")
+				input, err := ioutil.ReadFile(domain+".txt")
+				if err != nil {
+						log.Fatalln(err)
+				}
+		
+				lines := strings.Split(string(input), "\n")
+		
+				for i, line := range lines {
+						if strings.Contains(line, nd) {
+								lines[i] = cambio+" IN A "+dns1
+						}
+				}
+				output := strings.Join(lines, "\n")
+				err = ioutil.WriteFile(domain+".txt", []byte(output), 0644)
+				if err != nil {
+						log.Fatalln(err)
+				}
+			}else if strings.ToLower(option) == "delete"{
+				input, err := ioutil.ReadFile(domain+".txt")
+				if err != nil {
+						log.Fatalln(err)
+				}
+		
+				lines := strings.Split(string(input), "\n")
+		
+				for i, line := range lines {
+						if strings.Contains(line, nd) {
+								lines[i] = " "
+						}
+				}
+				output := strings.Join(lines, "\n")
+				err = ioutil.WriteFile(domain+".txt", []byte(output), 0644)
+				if err != nil {
+						log.Fatalln(err)
+				}
+			}
+		}
+	}
+	err777 := os.Remove("log.txt")
+	if err777 != nil {
+	  fmt.Printf("Error eliminando archivo: %v\n", err777)
+	} else {
+	  fmt.Println("Eliminado correctamente")
+	}
+	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
 }
 //-------------no implementados----------------
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {

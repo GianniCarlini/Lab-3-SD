@@ -7,7 +7,8 @@ service Crud {
   rpc CreateD (CreateDRequest) returns (CreateDReply) {} //comandos para dns
   rpc ConnectC (ConnectCRequest) returns (ConnectCReply) {} //comandos para cliente
   rpc Get (GetRequest) returns (GetReply) {} //comandos para dns/cliente/broker
-
+  rpc Merge (MergeRequest) returns (MergeReply) {} //merge(?)
+  rpc PMerge (PMergeRequest) returns (PMergeReply) {} //propaga merge
 }
 
 //------------------------------
@@ -46,3 +47,18 @@ message GetReply {
   repeated int64 relojget = 2;
 }
 //------------------------------
+message MergeRequest {
+  string peticionlog = 1;
+}
+
+message MergeReply {
+  bytes logresp = 1;
+}
+//------------------------------
+message PMergeRequest {
+  repeated string mergecito = 1;
+}
+
+message PMergeReply {
+  string mresp = 1;
+}

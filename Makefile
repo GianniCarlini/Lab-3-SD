@@ -1,27 +1,11 @@
-  
-grpc:
-	export GO111MODULE=on
-	go get github.com/golang/protobuf/protoc-gen-go
-	go get google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.0
-	export PATH="$PATH:$(go env GOPATH)/bin"
-	protoc --go_out=plugins=grpc:proto helloworld.proto
+d1:
+	cd dns1 && \
+	go run dns1.go
 
-data1:
-	cd Data1 && \
-	go run dataNode1.go
+d2:
+	cd dns2 && \
+	go run dns2.go
 
-
-data2:
-	cd Data2 && \
-	go run dataNode2.go
-
-data3:
-	cd Data3 && \
-	go run dataNode3.go	
-
-
-namenode:
-	go run nameNode.go
-
-cliente:
-	go run cliente.go
+d3:
+	cd dns3 && \
+	go run dns3.go

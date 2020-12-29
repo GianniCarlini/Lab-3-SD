@@ -424,6 +424,196 @@ func (x *GetReply) GetRelojget() []int64 {
 	return nil
 }
 
+//------------------------------
+type MergeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Peticionlog string `protobuf:"bytes,1,opt,name=peticionlog,proto3" json:"peticionlog,omitempty"`
+}
+
+func (x *MergeRequest) Reset() {
+	*x = MergeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MergeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeRequest) ProtoMessage() {}
+
+func (x *MergeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeRequest.ProtoReflect.Descriptor instead.
+func (*MergeRequest) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *MergeRequest) GetPeticionlog() string {
+	if x != nil {
+		return x.Peticionlog
+	}
+	return ""
+}
+
+type MergeReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Logresp []byte `protobuf:"bytes,1,opt,name=logresp,proto3" json:"logresp,omitempty"`
+}
+
+func (x *MergeReply) Reset() {
+	*x = MergeReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MergeReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeReply) ProtoMessage() {}
+
+func (x *MergeReply) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeReply.ProtoReflect.Descriptor instead.
+func (*MergeReply) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *MergeReply) GetLogresp() []byte {
+	if x != nil {
+		return x.Logresp
+	}
+	return nil
+}
+
+//------------------------------
+type PMergeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Mergecito []string `protobuf:"bytes,1,rep,name=mergecito,proto3" json:"mergecito,omitempty"`
+}
+
+func (x *PMergeRequest) Reset() {
+	*x = PMergeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PMergeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PMergeRequest) ProtoMessage() {}
+
+func (x *PMergeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PMergeRequest.ProtoReflect.Descriptor instead.
+func (*PMergeRequest) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PMergeRequest) GetMergecito() []string {
+	if x != nil {
+		return x.Mergecito
+	}
+	return nil
+}
+
+type PMergeReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Mresp string `protobuf:"bytes,1,opt,name=mresp,proto3" json:"mresp,omitempty"`
+}
+
+func (x *PMergeReply) Reset() {
+	*x = PMergeReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_helloworld_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PMergeReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PMergeReply) ProtoMessage() {}
+
+func (x *PMergeReply) ProtoReflect() protoreflect.Message {
+	mi := &file_helloworld_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PMergeReply.ProtoReflect.Descriptor instead.
+func (*PMergeReply) Descriptor() ([]byte, []int) {
+	return file_helloworld_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PMergeReply) GetMresp() string {
+	if x != nil {
+		return x.Mresp
+	}
+	return ""
+}
+
 var File_helloworld_proto protoreflect.FileDescriptor
 
 var file_helloworld_proto_rawDesc = []byte{
@@ -452,24 +642,43 @@ var file_helloworld_proto_rawDesc = []byte{
 	0x74, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x70, 0x67, 0x65, 0x74, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x70, 0x67, 0x65, 0x74, 0x12, 0x1a, 0x0a, 0x08,
 	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x67, 0x65, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x03, 0x52, 0x08,
-	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x67, 0x65, 0x74, 0x32, 0x89, 0x02, 0x0a, 0x04, 0x43, 0x72, 0x75,
-	0x64, 0x12, 0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x12, 0x1a, 0x2e, 0x68,
-	0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x42, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f,
-	0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52, 0x65, 0x70,
-	0x6c, 0x79, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x12,
-	0x1a, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65,
-	0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44,
-	0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x44, 0x0a, 0x08, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x43, 0x12, 0x1b, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64,
-	0x2e, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x19, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x35, 0x0a,
-	0x03, 0x47, 0x65, 0x74, 0x12, 0x16, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c,
-	0x64, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x68,
-	0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x70,
-	0x6c, 0x79, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x65, 0x6c, 0x6f, 0x6a, 0x67, 0x65, 0x74, 0x22, 0x30, 0x0a, 0x0c, 0x4d, 0x65, 0x72, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x70, 0x65, 0x74, 0x69,
+	0x63, 0x69, 0x6f, 0x6e, 0x6c, 0x6f, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70,
+	0x65, 0x74, 0x69, 0x63, 0x69, 0x6f, 0x6e, 0x6c, 0x6f, 0x67, 0x22, 0x26, 0x0a, 0x0a, 0x4d, 0x65,
+	0x72, 0x67, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x6c, 0x6f, 0x67, 0x72,
+	0x65, 0x73, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x07, 0x6c, 0x6f, 0x67, 0x72, 0x65,
+	0x73, 0x70, 0x22, 0x2d, 0x0a, 0x0d, 0x50, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x6d, 0x65, 0x72, 0x67, 0x65, 0x63, 0x69, 0x74, 0x6f,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x6d, 0x65, 0x72, 0x67, 0x65, 0x63, 0x69, 0x74,
+	0x6f, 0x22, 0x23, 0x0a, 0x0b, 0x50, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x12, 0x14, 0x0a, 0x05, 0x6d, 0x72, 0x65, 0x73, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x6d, 0x72, 0x65, 0x73, 0x70, 0x32, 0x86, 0x03, 0x0a, 0x04, 0x43, 0x72, 0x75, 0x64, 0x12,
+	0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x12, 0x1a, 0x2e, 0x68, 0x65, 0x6c,
+	0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f,
+	0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x00, 0x12, 0x41, 0x0a, 0x07, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x12, 0x1a, 0x2e,
+	0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x68, 0x65, 0x6c, 0x6c,
+	0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x44, 0x0a, 0x08, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x43, 0x12, 0x1b, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19,
+	0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x43, 0x6f, 0x6e, 0x6e,
+	0x65, 0x63, 0x74, 0x43, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x03, 0x47,
+	0x65, 0x74, 0x12, 0x16, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e,
+	0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x68, 0x65, 0x6c,
+	0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x00, 0x12, 0x3b, 0x0a, 0x05, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x12, 0x18, 0x2e, 0x68, 0x65,
+	0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72,
+	0x6c, 0x64, 0x2e, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x12,
+	0x3e, 0x0a, 0x06, 0x50, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x12, 0x19, 0x2e, 0x68, 0x65, 0x6c, 0x6c,
+	0x6f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x50, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x77, 0x6f, 0x72, 0x6c,
+	0x64, 0x2e, 0x50, 0x4d, 0x65, 0x72, 0x67, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -484,7 +693,7 @@ func file_helloworld_proto_rawDescGZIP() []byte {
 	return file_helloworld_proto_rawDescData
 }
 
-var file_helloworld_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_helloworld_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_helloworld_proto_goTypes = []interface{}{
 	(*CreateBRequest)(nil),  // 0: helloworld.CreateBRequest
 	(*CreateBReply)(nil),    // 1: helloworld.CreateBReply
@@ -494,21 +703,29 @@ var file_helloworld_proto_goTypes = []interface{}{
 	(*ConnectCReply)(nil),   // 5: helloworld.ConnectCReply
 	(*GetRequest)(nil),      // 6: helloworld.GetRequest
 	(*GetReply)(nil),        // 7: helloworld.GetReply
+	(*MergeRequest)(nil),    // 8: helloworld.MergeRequest
+	(*MergeReply)(nil),      // 9: helloworld.MergeReply
+	(*PMergeRequest)(nil),   // 10: helloworld.PMergeRequest
+	(*PMergeReply)(nil),     // 11: helloworld.PMergeReply
 }
 var file_helloworld_proto_depIdxs = []int32{
-	0, // 0: helloworld.Crud.CreateB:input_type -> helloworld.CreateBRequest
-	2, // 1: helloworld.Crud.CreateD:input_type -> helloworld.CreateDRequest
-	4, // 2: helloworld.Crud.ConnectC:input_type -> helloworld.ConnectCRequest
-	6, // 3: helloworld.Crud.Get:input_type -> helloworld.GetRequest
-	1, // 4: helloworld.Crud.CreateB:output_type -> helloworld.CreateBReply
-	3, // 5: helloworld.Crud.CreateD:output_type -> helloworld.CreateDReply
-	5, // 6: helloworld.Crud.ConnectC:output_type -> helloworld.ConnectCReply
-	7, // 7: helloworld.Crud.Get:output_type -> helloworld.GetReply
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: helloworld.Crud.CreateB:input_type -> helloworld.CreateBRequest
+	2,  // 1: helloworld.Crud.CreateD:input_type -> helloworld.CreateDRequest
+	4,  // 2: helloworld.Crud.ConnectC:input_type -> helloworld.ConnectCRequest
+	6,  // 3: helloworld.Crud.Get:input_type -> helloworld.GetRequest
+	8,  // 4: helloworld.Crud.Merge:input_type -> helloworld.MergeRequest
+	10, // 5: helloworld.Crud.PMerge:input_type -> helloworld.PMergeRequest
+	1,  // 6: helloworld.Crud.CreateB:output_type -> helloworld.CreateBReply
+	3,  // 7: helloworld.Crud.CreateD:output_type -> helloworld.CreateDReply
+	5,  // 8: helloworld.Crud.ConnectC:output_type -> helloworld.ConnectCReply
+	7,  // 9: helloworld.Crud.Get:output_type -> helloworld.GetReply
+	9,  // 10: helloworld.Crud.Merge:output_type -> helloworld.MergeReply
+	11, // 11: helloworld.Crud.PMerge:output_type -> helloworld.PMergeReply
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_helloworld_proto_init() }
@@ -613,6 +830,54 @@ func file_helloworld_proto_init() {
 				return nil
 			}
 		}
+		file_helloworld_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MergeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MergeReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PMergeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_helloworld_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PMergeReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -620,7 +885,7 @@ func file_helloworld_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_helloworld_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -650,6 +915,8 @@ type CrudClient interface {
 	CreateD(ctx context.Context, in *CreateDRequest, opts ...grpc.CallOption) (*CreateDReply, error)
 	ConnectC(ctx context.Context, in *ConnectCRequest, opts ...grpc.CallOption) (*ConnectCReply, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetReply, error)
+	Merge(ctx context.Context, in *MergeRequest, opts ...grpc.CallOption) (*MergeReply, error)
+	PMerge(ctx context.Context, in *PMergeRequest, opts ...grpc.CallOption) (*PMergeReply, error)
 }
 
 type crudClient struct {
@@ -696,12 +963,32 @@ func (c *crudClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallO
 	return out, nil
 }
 
+func (c *crudClient) Merge(ctx context.Context, in *MergeRequest, opts ...grpc.CallOption) (*MergeReply, error) {
+	out := new(MergeReply)
+	err := c.cc.Invoke(ctx, "/helloworld.Crud/Merge", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *crudClient) PMerge(ctx context.Context, in *PMergeRequest, opts ...grpc.CallOption) (*PMergeReply, error) {
+	out := new(PMergeReply)
+	err := c.cc.Invoke(ctx, "/helloworld.Crud/PMerge", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CrudServer is the server API for Crud service.
 type CrudServer interface {
 	CreateB(context.Context, *CreateBRequest) (*CreateBReply, error)
 	CreateD(context.Context, *CreateDRequest) (*CreateDReply, error)
 	ConnectC(context.Context, *ConnectCRequest) (*ConnectCReply, error)
 	Get(context.Context, *GetRequest) (*GetReply, error)
+	Merge(context.Context, *MergeRequest) (*MergeReply, error)
+	PMerge(context.Context, *PMergeRequest) (*PMergeReply, error)
 }
 
 // UnimplementedCrudServer can be embedded to have forward compatible implementations.
@@ -719,6 +1006,12 @@ func (*UnimplementedCrudServer) ConnectC(context.Context, *ConnectCRequest) (*Co
 }
 func (*UnimplementedCrudServer) Get(context.Context, *GetRequest) (*GetReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedCrudServer) Merge(context.Context, *MergeRequest) (*MergeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Merge not implemented")
+}
+func (*UnimplementedCrudServer) PMerge(context.Context, *PMergeRequest) (*PMergeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PMerge not implemented")
 }
 
 func RegisterCrudServer(s *grpc.Server, srv CrudServer) {
@@ -797,6 +1090,42 @@ func _Crud_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Crud_Merge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MergeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrudServer).Merge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Crud/Merge",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrudServer).Merge(ctx, req.(*MergeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Crud_PMerge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PMergeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CrudServer).PMerge(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Crud/PMerge",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CrudServer).PMerge(ctx, req.(*PMergeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Crud_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "helloworld.Crud",
 	HandlerType: (*CrudServer)(nil),
@@ -816,6 +1145,14 @@ var _Crud_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _Crud_Get_Handler,
+		},
+		{
+			MethodName: "Merge",
+			Handler:    _Crud_Merge_Handler,
+		},
+		{
+			MethodName: "PMerge",
+			Handler:    _Crud_PMerge_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

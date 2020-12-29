@@ -29,7 +29,13 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	reloj := []int64{1,0,0}
 	return &pb.CreateDReply{Reloj:reloj}, nil
 }
-
+func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply, error) {
+	r := []byte("Hola mundo!\n")
+	return &pb.MergeReply{Logresp: r}, nil
+}
+func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
+	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
+}
 func main() {
 	fmt.Println("Bienvenido Cliente")
 	for{

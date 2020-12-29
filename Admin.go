@@ -22,7 +22,14 @@ const (
 
 type server struct {
 }
-
+//-----no imp--------------
+func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply, error) {
+	r := []byte("Hola mundo!\n")
+	return &pb.MergeReply{Logresp: r}, nil
+}
+func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
+	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
+}
 func main() {
 	fmt.Println("Bienvenido Administrador")
 	for{
@@ -48,7 +55,7 @@ func main() {
 			log.Printf("Ip: %s", r.GetIpb())
 			fmt.Println("Connectando con el servidor DNS")
 			//--------------------------------------------
-			conn2, err2 := grpc.Dial(dns1, grpc.WithInsecure(), grpc.WithBlock())
+			conn2, err2 := grpc.Dial(r.GetIpb(), grpc.WithInsecure(), grpc.WithBlock())
 			if err2 != nil {
 				log.Fatalf("did not connect: %v", err2)
 			}
