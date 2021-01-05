@@ -9,6 +9,8 @@ service Crud {
   rpc Get (GetRequest) returns (GetReply) {} //comandos para dns/cliente/broker
   rpc Merge (MergeRequest) returns (MergeReply) {} //merge(?)
   rpc PMerge (PMergeRequest) returns (PMergeReply) {} //propaga merge
+  rpc IpCambio (IpCambioRequest) returns (IpCambioReply) {} //propaga merge
+  rpc RelojCambio (stream RelojCambioRequest) returns (stream RelojCambioReply) {} //propaga reloj
 }
 
 //------------------------------
@@ -18,6 +20,7 @@ message CreateBRequest {
 
 message CreateBReply {
   string ipb = 1;
+  int64 contador = 2;
 }
 //------------------------------
 
@@ -61,4 +64,21 @@ message PMergeRequest {
 
 message PMergeReply {
   string mresp = 1;
+}
+//------------------------------
+message IpCambioRequest {
+  string cambio = 1;
+}
+
+message IpCambioReply {
+  string recibido = 1;
+}
+//------------------------------
+message RelojCambioRequest {
+  repeated int64 relojito = 1;
+  string domain = 2;
+}
+
+message RelojCambioReply {
+  string aviso = 1;
 }

@@ -22,6 +22,10 @@ const (
 
 type server struct {
 }
+
+var ipcambio int64 = 9999999999
+var ipconect string
+
 //-----no imp--------------
 func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply, error) {
 	r := []byte("Hola mundo!\n")
@@ -29,6 +33,11 @@ func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply
 }
 func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
 	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
+}
+func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCambioReply, error) {
+	dom = in.GetRelojito()
+	watch = in.GetDomain()
+	return &pb.IpCambioReply{Aviso: "Cambio los relojes"}, nil
 }
 func main() {
 	fmt.Println("Bienvenido Administrador")
@@ -40,7 +49,7 @@ func main() {
 
 		if (strings.ToLower(option) == ("create")) || (strings.ToLower(option) == ("update")) || (strings.ToLower(option) == ("delete")){
 			fmt.Println("Conectando con el broker")
-			conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+			conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())//broker
 			if err != nil {
 				log.Fatalf("did not connect: %v", err)
 			}
@@ -54,8 +63,14 @@ func main() {
 			}
 			log.Printf("Ip: %s", r.GetIpb())
 			fmt.Println("Connectando con el servidor DNS")
+			if r.GetContador() == ipcambio {
+				fmt.Println("conectando...")
+			}else{
+				ipconect = r.GetIpb()
+				ipcambio = r.GetContador()
+			}
 			//--------------------------------------------
-			conn2, err2 := grpc.Dial(r.GetIpb(), grpc.WithInsecure(), grpc.WithBlock())
+			conn2, err2 := grpc.Dial(ipconect, grpc.WithInsecure(), grpc.WithBlock()) //dns
 			if err2 != nil {
 				log.Fatalf("did not connect: %v", err2)
 			}

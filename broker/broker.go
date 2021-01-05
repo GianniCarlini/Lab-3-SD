@@ -22,16 +22,19 @@ const (
 type server struct {
 }
 
+var ipcambio int64 = 0
 
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {
 	fmt.Println("Broker iniciado")
+	fmt.Println(ipcambio)
+	fmt.Println("Broker inisaddsadasciado")
 	log.Printf("Recibido: %v", in.GetComandob())
 	//------ip aleatoria asignada---------
 	rand.Seed(time.Now().Unix())
 	ips := []string{dns1, dns2, dns3}
 	n := rand.Int() % len(ips)
 	pick := ips[n]
-	return &pb.CreateBReply{Ipb: pick}, nil
+	return &pb.CreateBReply{Ipb: pick, Contador: ipcambio}, nil
 }
 func (s *server) ConnectC(ctx context.Context, in *pb.ConnectCRequest) (*pb.ConnectCReply, error) {
 	fmt.Println("Conectando con el broker metodo get")
@@ -50,10 +53,31 @@ func (s *server) ConnectC(ctx context.Context, in *pb.ConnectCRequest) (*pb.Conn
 	return &pb.ConnectCReply{Ipc: r.GetIpget(), Relojc: r.GetRelojget()}, nil
 }
 
+func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCambioReply, error) {
+	fmt.Println(in.GetCambio())
+	ipcambio++
+	fmt.Println("Hicieron un merge")
+	fmt.Println(ipcambio)
+	return &pb.IpCambioReply{Recibido: "Gracias! me llego el merge"}, nil
+}
 //-------------no implementados----------------
 func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.CreateDReply, error) {
 	reloj := []int64{1,0,0}
 	return &pb.CreateDReply{Reloj: reloj}, nil
+}
+func (s *server) RelojCambio(stream pb.Crud_RelojCambioServer) error {
+	for {
+		in, err := stream.Recv()
+		if err != nil {
+			return err
+		}
+		asd := in.Domain
+		fmt.Println(asd)
+		resp := pb.RelojCambioReply{Aviso: "Hice un cambio en el reloj"}
+		if err := stream.Send(&resp); err != nil { 
+			log.Printf("send error %v", err)
+		}
+	}
 }
 //-------------no implementados----------------
 func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, error) {

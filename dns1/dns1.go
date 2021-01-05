@@ -71,6 +71,7 @@ func merge(){
 		if err2 != nil {
 			log.Fatal(err2)
 		}
+		
 		//----------log 3-----------------------
 		conn2, err3 := grpc.Dial(dns3, grpc.WithInsecure(), grpc.WithBlock())
 		if err3 != nil {
@@ -128,7 +129,6 @@ func merge(){
 		}
 		defer file2.Close()
 		scanner2 := bufio.NewScanner(file2)
- 
 		for scanner2.Scan() {             // internally, it advances token based on sperator
 			fmt.Println(scanner2.Text()) 
 			option := strings.Split(scanner2.Text()," ")[0]
@@ -139,6 +139,16 @@ func merge(){
 			}else if strings.ToLower(option) == "delete"{
 				delete = append(delete, scanner2.Text())
 			}
+			nd := strings.Split(scanner2.Text()," ")[1]
+			nd = strings.TrimSuffix(nd, "\n")
+			domain := strings.Split(nd,".")[1]
+			existe,indice := existeEnArreglo(dom,domain)
+			if existe {
+				watch[indice][1] += 1 //por dominio
+			}else{
+				watch = append(watch,[]int64{0,1,0})
+				dom = append(dom,domain)
+			}
 		}
 		//----------------------------------------------
 		file3, err9 := os.Open("log3.txt")
@@ -148,7 +158,6 @@ func merge(){
 		defer file3.Close()
  
 		scanner3 := bufio.NewScanner(file3)
- 
 		for scanner3.Scan() {             // internally, it advances token based on sperator
 			fmt.Println(scanner3.Text()) 
 			option := strings.Split(scanner3.Text()," ")[0]
@@ -158,6 +167,16 @@ func merge(){
 				update = append(update, scanner3.Text())
 			}else if strings.ToLower(option) == "delete"{
 				delete = append(delete, scanner3.Text())
+			}
+			nd := strings.Split(scanner3.Text()," ")[1]
+			nd = strings.TrimSuffix(nd, "\n")
+			domain := strings.Split(nd,".")[1]
+			existe,indice := existeEnArreglo(dom,domain)
+			if existe {
+				watch[indice][2] += 1 //por dominio
+			}else{
+				watch = append(watch,[]int64{0,0,1})
+				dom = append(dom,domain)
 			}
 		}
 		for _,x := range create{
@@ -261,6 +280,44 @@ func merge(){
 				}
 			}
 		}
+		//----------reloj 2-----------------------
+		conn133, err133 := grpc.Dial(dns2, grpc.WithInsecure())
+		if err133 != nil {
+			log.Fatalf("failed to connect: %s", err133)
+		}
+		defer conn133.Close()
+
+		client := pb.NewCrudClient(conn133)
+		stream, _ := client.RelojCambio(context.Background())
+		for i,_ := range dom{
+			msg := &pb.RelojCambioRequest{Relojito : watch[i], Domain: dom[i]}
+			stream.Send(msg)
+			resp, err1332 := stream.Recv()
+			if err1332 != nil {
+				log.Fatalf("can not receive %v", err1332)
+			}
+			fmt.Println(resp.Aviso)
+		}
+		stream.CloseSend()
+		//----------reloj 3-----------------------
+		conn1333, err1333 := grpc.Dial(dns3, grpc.WithInsecure())
+		if err1333 != nil {
+			log.Fatalf("failed to connect: %s", err1333)
+		}
+		defer conn1333.Close()
+
+		client3 := pb.NewCrudClient(conn1333)
+		stream3, _ := client3.RelojCambio(context.Background())
+		for i,_ := range dom{
+			msg3 := &pb.RelojCambioRequest{Relojito : watch[i], Domain: dom[i]}
+			stream3.Send(msg3)
+			resp3, err13323 := stream3.Recv()
+			if err13323 != nil {
+				log.Fatalf("can not receive %v", err13323)
+			}
+			fmt.Println(resp3.Aviso)
+		}
+		stream3.CloseSend()
 		//-------borrado de logs-------------
 		err6 := os.Remove("log2.txt")
 		if err6 != nil {
@@ -282,6 +339,28 @@ func merge(){
 		} else {
 		  fmt.Println("Eliminado correctamente")
 		}
+		_, err12312 := os.Create("log.txt")
+		if err12312 != nil {
+			fmt.Printf("Error eliminando archivo: %v\n",err12312)
+		}
+		//-----aviso al broker-------------
+		conn63, err1112 := grpc.Dial("localhost:50050", grpc.WithInsecure(), grpc.WithBlock())
+		if err1112 != nil {
+			log.Fatalf("did not connect: %v", err1112)
+		}
+		defer conn63.Close()
+		c553 := pb.NewCrudClient(conn63)
+		ctx63, cancel := context.WithTimeout(context.Background(), time.Second)
+		defer cancel()
+		r63, err2221 := c553.IpCambio(ctx63, &pb.IpCambioRequest{Cambio: "Hice un merge"})
+		if err2221 != nil {
+			log.Fatalf("could not greet: %v", err2221)
+		}
+		fmt.Println("Respuesta broker:",r63.GetRecibido())
+		//--------------asd-------------------
+		fmt.Println("Merge watch")
+		fmt.Println(watch)
+		fmt.Println(dom)
     }
 }
 
@@ -372,8 +451,6 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
                 log.Fatalln(err)
 		}
 	}
-	fmt.Println("ANTES DE LA TRAGEDIA")
-	fmt.Println(watch[indice])
 	return &pb.CreateDReply{Reloj: watch[indice]}, nil
 }
 func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, error) {
@@ -422,6 +499,25 @@ func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply
 }
 func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
 	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
+}
+
+func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCambioReply, error) {
+	return &pb.IpCambioReply{Recibido: "Gracias!"}, nil
+}
+func (s *server) RelojCambio(stream pb.Crud_RelojCambioServer) error {
+	for {
+		in, err := stream.Recv()
+		if err != nil {
+			return err
+		}
+		watch = append(watch,in.Relojito)
+		dom = append(dom,in.Domain)
+
+		resp := pb.RelojCambioReply{Aviso: "Hice un cambio en el reloj"}
+		if err := stream.Send(&resp); err != nil { 
+			log.Printf("send error %v", err)
+		}
+	}
 }
 func main() {
 

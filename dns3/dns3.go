@@ -73,9 +73,9 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
 	//----------------------------------------------------------
 	existe,indice := existeEnArreglo(dom,domain)
 	if existe {
-		watch[indice][0] += 1 //por dominio
+		watch[indice][2] += 1 //por dominio
 	}else{
-		watch = append(watch,[]int64{1,0,0})
+		watch = append(watch,[]int64{0,0,1})
 		dom = append(dom,domain)
 	}
 	fmt.Println(watch)
@@ -134,8 +134,6 @@ func (s *server) CreateD(ctx context.Context, in *pb.CreateDRequest) (*pb.Create
                 log.Fatalln(err)
 		}
 	}
-	fmt.Println("ANTES DE LA TRAGEDIA")
-	fmt.Println(watch[indice])
 	return &pb.CreateDReply{Reloj: watch[indice]}, nil
 }
 func (s *server) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetReply, error) {
@@ -270,7 +268,31 @@ func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeRe
 	} else {
 	  fmt.Println("Eliminado correctamente")
 	}
+	_, err12312 := os.Create("log.txt")
+	if err12312 != nil {
+		fmt.Printf("Error eliminando archivo: %v\n", err12312)
+	}
+	watch = nil
+	dom = nil
 	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
+}
+func (s *server) RelojCambio(stream pb.Crud_RelojCambioServer) error {
+	for {
+		in, err := stream.Recv()
+		if err != nil {
+			return err
+		}
+		watch = append(watch,in.Relojito)
+		dom = append(dom,in.Domain)
+
+		resp := pb.RelojCambioReply{Aviso: "Hice un cambio en el reloj"}
+		if err := stream.Send(&resp); err != nil { 
+			log.Printf("send error %v", err)
+		}
+		fmt.Println("Merge watch")
+		fmt.Println(watch)
+		fmt.Println(dom)
+	}
 }
 //-------------no implementados----------------
 func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.CreateBReply, error) {
@@ -279,6 +301,10 @@ func (s *server) CreateB(ctx context.Context, in *pb.CreateBRequest) (*pb.Create
 func (s *server) ConnectC(ctx context.Context, in *pb.ConnectCRequest) (*pb.ConnectCReply, error) {
 	reloj := []int64{1,0,0}
 	return &pb.ConnectCReply{Ipc: "ip", Relojc: reloj}, nil
+}
+
+func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCambioReply, error) {
+	return &pb.IpCambioReply{Recibido: "Gracias!"}, nil
 }
 func main() {
 	lis, err := net.Listen("tcp", port)
