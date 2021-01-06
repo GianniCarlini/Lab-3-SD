@@ -51,7 +51,7 @@ func existeEnArreglo2(arreglo []string, busqueda string) bool{ //https://parziby
 }
 func merge(){
     for{
-        time.Sleep(time.Duration(60)*time.Second)
+        time.Sleep(time.Duration(300)*time.Second)
 		fmt.Println("Iniciando merge")
 		//----------log 2-----------------------
 		conn, err := grpc.Dial(dns2, grpc.WithInsecure(), grpc.WithBlock())
