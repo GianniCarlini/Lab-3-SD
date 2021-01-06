@@ -14,10 +14,10 @@ import (
 )
 
 const (
-	address = "localhost:50050" //Broker
-	dns1 = "localhost:50051"
-	dns2 = "localhost:50052"
-	dns3 = "localhost:50053"
+	address = "10.10.28.67:50050" //Broker
+	dns1 = "10.10.28.68:50051"
+	dns2 = "10.10.28.69:50052"
+	dns3 = "10.10.28.7:50053"
 )
 
 type server struct {

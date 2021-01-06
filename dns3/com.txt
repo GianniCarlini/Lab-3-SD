@@ -1,2 +1,0 @@
-xd.com IN A localhost:50053
-lola.com IN A localhost:50051
