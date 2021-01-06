@@ -15,7 +15,7 @@ bro:
 	go run broker.go
 
 adm:
-	go run admin.go
+	go run Admin.go
 
 cliente:
-	go run client.go
+	go run Client.go
