@@ -9,3 +9,13 @@ d2:
 d3:
 	cd dns3 && \
 	go run dns3.go
+
+bro:
+	cd broker && \
+	go run broker.go
+
+adm:
+	go run admin.go
+
+cliente:
+	go run client.go

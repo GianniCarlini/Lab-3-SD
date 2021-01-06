@@ -34,11 +34,6 @@ func (s *server) Merge(ctx context.Context, in *pb.MergeRequest) (*pb.MergeReply
 func (s *server) PMerge(ctx context.Context, in *pb.PMergeRequest) (*pb.PMergeReply, error) {
 	return &pb.PMergeReply{Mresp: "Gracias!"}, nil
 }
-func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCambioReply, error) {
-	dom = in.GetRelojito()
-	watch = in.GetDomain()
-	return &pb.IpCambioReply{Aviso: "Cambio los relojes"}, nil
-}
 func main() {
 	fmt.Println("Bienvenido Administrador")
 	for{
