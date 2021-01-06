@@ -344,7 +344,7 @@ func merge(){
 			fmt.Printf("Error eliminando archivo: %v\n",err12312)
 		}
 		//-----aviso al broker-------------
-		conn63, err1112 := grpc.Dial("localhost:50050", grpc.WithInsecure(), grpc.WithBlock())
+		conn63, err1112 := grpc.Dial("10.10.28.67:50050", grpc.WithInsecure(), grpc.WithBlock())
 		if err1112 != nil {
 			log.Fatalf("did not connect: %v", err1112)
 		}
@@ -522,7 +522,10 @@ func (s *server) RelojCambio(stream pb.Crud_RelojCambioServer) error {
 func main() {
 
 	go merge()
-
+	_, err12312 := os.Create("log.txt")
+		if err12312 != nil {
+			fmt.Printf("Error eliminando archivo: %v\n",err12312)
+		}
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

@@ -307,6 +307,10 @@ func (s *server) IpCambio(ctx context.Context, in *pb.IpCambioRequest) (*pb.IpCa
 	return &pb.IpCambioReply{Recibido: "Gracias!"}, nil
 }
 func main() {
+	_, err12312 := os.Create("log.txt")
+		if err12312 != nil {
+			fmt.Printf("Error eliminando archivo: %v\n",err12312)
+		}
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
